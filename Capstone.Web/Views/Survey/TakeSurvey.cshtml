@@ -8,7 +8,7 @@
 <form asp-controller="survey" asp-action="takesurvey" method="post">
     <div>
         <label asp-for="ParkCode">What's your favorite park?</label>
-
+        <select asp-for="ParkCode" asp-items="@ViewBag.Parks"></select>
     </div>
     <div>
         <label asp-for="Email">Enter your email address: </label>
