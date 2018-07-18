@@ -1,0 +1,63 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Threading.Tasks;
+using Capstone.Web.Models;
+
+namespace Capstone.Web.DAL
+{
+    public class SurveyDAL : ISurveyDAL
+    {
+		private readonly string connectionString;
+
+		public SurveyDAL(string databaseConnectionString)
+		{
+			connectionString = databaseConnectionString;
+		}
+
+		// Need an Insert to save user survey
+
+		// Pull all survey responses
+		public IList<SurveyResult> GetResults()
+		{
+			IList<SurveyResult> surveyResults = new List<SurveyResult>();
+
+			try
+			{
+				// Create a new connection object
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					// Open the connection
+					conn.Open();
+
+					string sql = $@"SELECT park.parkName, COUNT(survey_result.parkCode) AS Tally
+						FROM survey_result
+						INNER JOIN park ON survey_result.parkCode = park.parkCode
+						GROUP BY park.parkName
+						ORDER BY COUNT(survey_result.parkCode) DESC, park.parkName ASC;";
+					SqlCommand cmd = new SqlCommand(sql, conn);
+
+					// Execute the command
+					SqlDataReader reader = cmd.ExecuteReader();
+
+					while (reader.Read())
+					{
+						SurveyResult result = new SurveyResult();
+						result.ParkName = Convert.ToString(reader["parkName"]);
+						result.SurveyTally = Convert.ToInt32(reader["Tally"]);
+
+						surveyResults.Add(result);
+					}
+				}
+			}
+			catch (SqlException ex)
+			{
+				throw;
+			}
+
+			return surveyResults;
+		}
+
+	}
+}

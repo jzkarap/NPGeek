@@ -1,0 +1,28 @@
+﻿@model  Survey
+@{
+    ViewData["Title"] = "TakeSurvey";
+}
+
+<h2>Vote for your favorite park</h2>
+
+<form asp-controller="survey" asp-action="takesurvey" method="post">
+    <div>
+        <label asp-for="ParkCode">What's your favorite park?</label>
+
+    </div>
+    <div>
+        <label asp-for="Email">Enter your email address: </label>
+        <input type="email" asp-for="Email" />
+    </div>
+    <div>
+        <label asp-for="State">Enter your state: </label>
+        <input asp-for="State" />
+    </div>
+    <div>
+        <label asp-for="ActivityLevel">Select your activity level: </label>
+        <select asp-for="ActivityLevel" asp-items="Survey.ActivityLevelOptions"></select>
+    </div>
+    <div>
+        <input type="submit" value="Cast your vote" />
+    </div>
+</form>

@@ -1,0 +1,81 @@
+﻿@model Park
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+@*@(int check = HttpContext.Current.Session["Celsius"].ToInt32());*@
+
+<h2>Park Detail</h2>
+
+<div>
+    <blockquote>@Model.Quote</blockquote>
+    <cite>@Model.QuoteSource</cite>
+    <img src="~/img/parks/@(Model.ParkCode).jpg" />
+    <div>
+        <h4>@Model.ParkName</h4>
+        <p>@Model.State</p>
+        <p>@Model.Description</p>
+    </div>
+
+    <div>
+        <div>TODAY</div>
+        <div><img src="~/img/weather/@(ViewBag.Forecast[0].GetImageName())" /></div>
+        <div>@ViewBag.Forecast[0].Description</div>
+        <div>High @ViewBag.Forecast[0].HighTemp</div>
+        <div>Low  @ViewBag.Forecast[0].LowTemp</div>
+        <div>@ViewBag.Forecast[0].GetAdviceForWeather()</div>
+        <div>@ViewBag.Forecast[0].GetAdviceForTemp()</div>
+    </div>
+
+    <div>
+        @for (int i = 1; i < ViewBag.Forecast.Count; i++)
+        {
+            <div>
+                <div><img src="~/img/weather/@(ViewBag.Forecast[i].GetImageName())" /></div>
+                <div>@ViewBag.Forecast[i].Description</div>
+                <div>High @ViewBag.Forecast[i].HighTemp</div>
+                <div>Low  @ViewBag.Forecast[i].LowTemp</div>
+            </div>
+        }
+    </div>
+
+    <table class="table table-striped">
+        <tr>
+            <td>Entry Fee</td>
+            <td>@Model.EntryFee.ToString("C")</td>
+        </tr>
+        <tr>
+            <td>Acreage</td>
+            <td>@Model.Acreage.ToString("N0")</td>
+        </tr>
+        <tr>
+            <td>Elevation</td>
+            <td>@Model.Elevation.ToString("N0")</td>
+        </tr>
+        <tr>
+            <td>Miles of Trail</td>
+            <td>@Model.MilesOfTrail miles</td>
+        </tr>
+        <tr>
+            <td># of Campsites</td>
+            <td>@Model.NumOfCampsites</td>
+        </tr>
+        <tr>
+            <td>Climate</td>
+            <td>@Model.Climate</td>
+        </tr>
+        <tr>
+            <td>Year Founded</td>
+            <td>@Model.YearFounded</td>
+        </tr>
+        <tr>
+            <td>Annual Visitors</td>
+            <td>@Model.AnnualVisitors.ToString("N0")</td>
+        </tr>
+        <tr>
+            <td>Animal Species</td>
+            <td>@Model.AnimalSpecies</td>
+        </tr>
+    </table>
+</div>

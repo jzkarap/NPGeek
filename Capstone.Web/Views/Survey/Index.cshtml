@@ -1,0 +1,12 @@
+﻿@model IList<SurveyResult>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Park Rankings</h2>
+
+@foreach(var result in Model)
+{
+    <div>@result.ParkName</div>
+    <div>@result.SurveyTally</div>
+}
