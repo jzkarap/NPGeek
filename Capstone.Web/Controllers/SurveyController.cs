@@ -27,6 +27,7 @@ namespace Capstone.Web.Controllers
             return View(results);
         }
 
+		[HttpGet]
 		public IActionResult TakeSurvey()
 		{
 			var parks = parkDAL.GetAllParks();
@@ -34,6 +35,38 @@ namespace Capstone.Web.Controllers
 			var options = parks.Select<Park, SelectListItem>(park => new SelectListItem() { Text = park.ParkName, Value = park.ParkCode });
 			ViewBag.Parks = options;
 
+			Survey survey = new Survey();
+
+			return View(survey);
+		}
+
+		[HttpPost]
+		public IActionResult TakeSurvey(Survey survey)
+		{
+			if (ModelState.IsValid)
+			{
+				if (surveyDAL.SubmitSurvey(survey) == true)
+				{
+					TempData["Submitted"] = true;
+					return RedirectToAction("Index");
+				}
+				else
+				{
+					return RedirectToAction("SurveyError");
+				}
+			}
+
+			var parks = parkDAL.GetAllParks();
+
+			var options = parks.Select<Park, SelectListItem>(park => new SelectListItem() { Text = park.ParkName, Value = park.ParkCode });
+			ViewBag.Parks = options;
+
+			return View(survey);
+			
+		}
+
+		public IActionResult SurveyError()
+		{
 			return View();
 		}
     }

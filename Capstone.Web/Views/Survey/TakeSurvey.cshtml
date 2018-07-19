@@ -9,18 +9,22 @@
     <div>
         <label asp-for="ParkCode">What's your favorite park?</label>
         <select asp-for="ParkCode" asp-items="@ViewBag.Parks"></select>
+        <span asp-validation-for="ParkCode"></span>
     </div>
     <div>
         <label asp-for="Email">Enter your email address: </label>
         <input type="email" asp-for="Email" />
+        <span asp-validation-for="Email"></span>
     </div>
     <div>
         <label asp-for="State">Enter your state: </label>
         <input asp-for="State" />
+        <span asp-validation-for="State"></span>
     </div>
     <div>
         <label asp-for="ActivityLevel">Select your activity level: </label>
         <select asp-for="ActivityLevel" asp-items="Survey.ActivityLevelOptions"></select>
+        <span asp-validation-for="ActivityLevel"></span>
     </div>
     <div>
         <input type="submit" value="Cast your vote" />

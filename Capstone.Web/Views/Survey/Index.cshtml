@@ -5,8 +5,25 @@
 
 <h2>Park Rankings</h2>
 
-@foreach(var result in Model)
+@if(TempData["Submitted"] != null)
 {
-    <div>@result.ParkName</div>
-    <div>@result.SurveyTally</div>
+    <p>YOUR VOTE IS CAST. MAY GOD HAVE MERCY ON YOUR SOUL.</p>
 }
+
+<table>
+    @foreach (var result in Model)
+    {
+        <thead>
+            <tr>
+                <th>@result.ParkName</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @result.SurveyTally
+                </td>
+            </tr>
+        </tbody>
+    }
+</table>

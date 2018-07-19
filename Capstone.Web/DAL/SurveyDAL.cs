@@ -17,6 +17,35 @@ namespace Capstone.Web.DAL
 		}
 
 		// Need an Insert to save user survey
+		public bool SubmitSurvey(Survey survey)
+		{
+			try
+			{
+				// Create a new connection object
+				using (SqlConnection conn = new SqlConnection(connectionString))
+				{
+					// Open the connection
+					conn.Open();
+
+					string sql = $@"INSERT INTO survey_result (parkCode, emailAddress, state, activityLevel) VALUES (@parkCode, @email, @state, @activityLevel);";
+					SqlCommand cmd = new SqlCommand(sql, conn);
+					cmd.Parameters.AddWithValue("@parkCode", survey.ParkCode);
+					cmd.Parameters.AddWithValue("@email", survey.Email);
+					cmd.Parameters.AddWithValue("@state", survey.State);
+					cmd.Parameters.AddWithValue("@activityLevel", survey.ActivityLevel);
+
+					// Execute the command
+					cmd.ExecuteNonQuery();
+				}
+			}
+			catch (SqlException ex)
+			{
+				return false;
+			}
+
+			return true;
+
+		}
 
 		// Pull all survey responses
 		public IList<SurveyResult> GetResults()

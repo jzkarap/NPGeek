@@ -4,14 +4,17 @@
     ViewData["Title"] = "Detail";
 }
 
-@*@(int check = HttpContext.Current.Session["Celsius"].ToInt32());*@
-
-<h2>Park Detail</h2>
+<h2 class="header">Park Detail</h2>
 
 <div>
-    <blockquote>@Model.Quote</blockquote>
-    <cite>@Model.QuoteSource</cite>
-    <img src="~/img/parks/@(Model.ParkCode).jpg" />
+    <div class="image_quote">
+        <img class=lg_park_image src="~/img/parks/@(Model.ParkCode).jpg" />
+        <div class="middle">
+            <p class="quote">"@Model.Quote"</p>
+            <p class="quote source">—@Model.QuoteSource</p>
+        </div>
+    </div>
+    
     <div>
         <h4>@Model.ParkName</h4>
         <p>@Model.State</p>
@@ -22,8 +25,8 @@
         <div>TODAY</div>
         <div><img src="~/img/weather/@(ViewBag.Forecast[0].GetImageName())" /></div>
         <div>@ViewBag.Forecast[0].Description</div>
-        <div>High @ViewBag.Forecast[0].HighTemp</div>
-        <div>Low  @ViewBag.Forecast[0].LowTemp</div>
+        <div>High <span class="temperature">@ViewBag.Forecast[0].HighTemp</span></div>
+        <div>Low  <span class="temperature">@ViewBag.Forecast[0].LowTemp</span></div>
         <div>@ViewBag.Forecast[0].GetAdviceForWeather()</div>
         <div>@ViewBag.Forecast[0].GetAdviceForTemp()</div>
     </div>
@@ -31,12 +34,12 @@
     <div>
         @for (int i = 1; i < ViewBag.Forecast.Count; i++)
         {
-            <div>
-                <div><img src="~/img/weather/@(ViewBag.Forecast[i].GetImageName())" /></div>
-                <div>@ViewBag.Forecast[i].Description</div>
-                <div>High @ViewBag.Forecast[i].HighTemp</div>
-                <div>Low  @ViewBag.Forecast[i].LowTemp</div>
-            </div>
+        <div>
+            <div><img src="~/img/weather/@(ViewBag.Forecast[i].GetImageName())" /></div>
+            <div>@ViewBag.Forecast[i].Description</div>
+            <div>High <span class="temperature">@ViewBag.Forecast[i].HighTemp</span></div>
+            <div>Low  <span class="temperature">@ViewBag.Forecast[i].LowTemp</span></div>
+        </div>
         }
     </div>
 
@@ -79,3 +82,7 @@
         </tr>
     </table>
 </div>
+
+<button>HELLO. IT ME, BUTTON.</button>
+
+<script src="~/js/site.js"></script>
