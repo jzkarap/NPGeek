@@ -1,8 +1,14 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
 for details on configuring this project to bundle and minify static web assets. */
 body {
-    padding-top: 50px;
     padding-bottom: 20px;
+    background-color: black;
+}
+
+.landing_page {
+    background-image: url(/img/canyon.jpg);
+    height: 1000px;
+    background-position: top;
 }
 
 /* Wrapping element */
@@ -10,22 +16,6 @@ body {
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-}
-
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
-}
-
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%;
-}
-
-/* QR code generator */
-#qrCode {
-    margin: 15px;
 }
 
 /* Hide/rearrange for smaller screens */
@@ -36,34 +26,44 @@ body {
     }
 }
 
-.body {
-}
-
 .page_grid {
     display: grid;
+    position: relative;
     grid-template-columns: repeat(3, 30%);
     grid-auto-rows: .8fr;
     grid-gap: 5rem;
-    z-index: 0;
 }
 
 .park_box {
-    box-shadow: 0 0 5px 5px rgba(0,0,0,0.2);
-    font-size: .9em;
+    box-shadow: 0 0 6px 6px rgba(255,255,255,0.3);
+    font-size: .9rem;
     border-radius: 2px;
     padding: 2px;
+    color: white;
+    z-index: 1;
+    display: block;
 }
 
-.park_box:hover {
-    box-shadow: 0 0 40px 10px rgba(0,0,0,0.2);
-    font-size: .9rem;
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
-    position: relative;
-    z-index: 2;
-    display: inline-block;
-    margin: 20px;
+    .park_box:hover {
+        box-shadow: 0 0 40px 10px rgba(255,255,255,0.4);
+    }
+
+.park_box img {
+    padding: 10px 10px 0px 10px;
 }
+
+.park_box:hover img {
+    padding: 0;
+}
+
+/*.park_box:hover {
+    box-shadow: 0 0 40px 10px rgba(255,255,255,0.4);
+    transform: scale(1.18);
+    font-size: .6rem;
+    margin: 20px;
+    position: relative;
+    z-index: 3;
+}*/
 
 img {
     object-fit: cover;
@@ -76,17 +76,26 @@ img {
     font-size: 8em;
     font-weight: 700;
     margin-bottom: 2%;
+    text-align: center;
+    color: white;
+    text-shadow: 3px 3px 3px rgba(255,255,255,0.3);
 }
 
 .park_name {
     font-family: 'Amatic SC';
     font-size: 3rem;
     text-align: center;
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+.park_name:hover {
+    color: yellow;
 }
 
 .park_info {
     margin: 1% 4%;
-    text-align: justify;
+    text-align: center;
 }
 
 .state_link {
@@ -94,10 +103,20 @@ img {
     font-family: Gaegu;
 }
 
+a {
+    color: white;
+}
+
+a:hover {
+    color: yellow;
+    text-decoration: none;
+}
+
 .park_description {
     margin-top: 2%;
     font-size: 1.2rem;
     font-family: Raleway;
+    text-align: justify;
 }
 
 .navbar {
@@ -107,23 +126,28 @@ img {
     font-size: 2em;
 }
 
-    .navbar li {
-        padding-left: 2%;
-        padding-right: 2%;
-    }
-
-.navbar li:hover {
-        text-shadow: 0 0 12px 10px rgba(0,0,0,0.2);
-
+.navbar li {
+        margin-right: 6%;
+        border-left: 1px solid black;
+        width: 20%;
 }
+
+    .navbar li:hover {
+        text-shadow: 1px 1px 3px rgba(0,0,0,.6);
+    }
 
 .navbar-brand {
     font-size: 1.8em;
 }
 
+
+.navbar-brand:hover {
+        text-shadow: 2px 2px 3px rgba(0,0,0,.6);
+}
+
 .image_quote {
     position: relative;
-    margin-right:auto;
+    margin-right: auto;
     margin-left: auto;
     width: 80%;
 }
@@ -135,12 +159,15 @@ img {
     height: auto;
     transition: .5s ease;
     backface-visibility: hidden;
+    border: 10px solid rgba(255,255,255,1);
+    border-radius: 300px;
 }
 
 .middle {
-    transition: .5s ease;
+    transition: .8s ease;
     opacity: 0;
     position: absolute;
+    width: 60%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -149,7 +176,7 @@ img {
 }
 
 .image_quote:hover .lg_park_image {
-    opacity: 0.3;
+    opacity: 0.6;
 }
 
 .image_quote:hover .middle {
@@ -158,13 +185,213 @@ img {
 
 .quote {
     background-color: transparent;
-    color: black;
-    font-size: 3em;
+    color: white;
+    font-size: 2.3vw;
     font-weight: 600;
     font-family: Amatic SC;
     padding: 16px 32px;
 }
 
+.source {
+    font-size: 1vw;
+    text-align: right;
+    font-style: italic;
+}
+
+.fa-tree {
+    margin-right: 5px;
+}
+
+.container hr {
+    width: 400px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+#landing_content {
+    font-family: Amatic SC;
+    color: black;
+    text-align: center;
+    padding-top: 30%;
+    /* offset x | offset y | blur-radius | color */
+    text-shadow: 0px 4px 3px rgba(0,0,0,.4), 0px 8px 13px rgba(0,0,0,.1), 0px 18px 23px rgba(0,0,0,.1);
+}
+
+#landing_content button {
+    font-weight: 800;
+    color: black;
+    border: 1px solid black;
+}
+
+.detail_name {
+    color: white;
+    font-family: Amatic SC;
+    font-size: 6rem;
+    text-align: center;
+}
+
+.detail_state {
+    color: white;
+    font-family: Amatic SC;
+    font-size: 2rem;
+    text-align: center;
+    padding-bottom: 3%;
+}
+
+.description {
+   padding-left: 10%;
+   padding-right: 10%;
+   padding-top: 4%;
+   padding-bottom: 4%;
+   background-color: white;
+   border: 5px solid white;
+   border-radius: 10px;
+
+}
+
+.detail_description {
+    color: black;
+    font-family: raleway;
+    font-weight: 300;
+    text-align: center;
+    font-size: 1.6rem;
+    vertical-align: central;
+}
+
+.current_weather {
+    margin-top: 2%;
+    font-family: raleway;
+    color: white;
+    width: 40%;
+    display: inline-block;
+    text-align: left;
+}
+
+.current_weather_icon {
+    width: 100%;
+    display: inline-block;
+    font-size: 12REM;
+    border: 1px solid white;
+    padding-right: 8%;
+    padding-left: 8%;
+    text-align: center;
+}
+
+    .current_weather_icon .far:nth-of-type(2) {
+        padding-left: 0;
+    }
+
+    .current_weather_icon .fas:nth-of-type(2) {
+        padding-left: 0;
+    }
+
+    .current_weather_icon .far:nth-of-type(1) {
+        padding-right: 0;
+    }
+
+    .current_weather_icon .fas:nth-of-type(1) {
+        padding-right: 0;
+    }
+
+.future_weather_icon {
+     font-size: 8rem;
+}
+
+.future_weather {
+    color: white;
+    margin-top: 3%;
+    margin-left: 4%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.future_weather_block {
+    text-align: center;
+    margin: 2%;
+    min-width: 210px;
+    max-width: 210px;
+    border: 1px solid white;
+}
+
+.weather_table table {
+    margin-top: 3%;
+    width: 100%;
+    text-align: center;
+}
+
+.weather_table th {
+    border-bottom: 1px solid white;
+    text-align: center;
+}
+
+.weather_table th:nth-of-type(2) {
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+
+.weather_table td:nth-of-type(2) {
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+
+.weather_advice {
+    margin-top: 6%;
+}
+
+.advice_header {
+    text-decoration: underline;
+}
+
+.weather_wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 2%;
+}
+
+.future_weather_block table {
+    margin-top: 3%;
+    width: 100%;
+    text-align: center;
+}
+
+.future_weather_block th {
+    border-bottom: 1px solid white;
+    border-top: 1px solid white;
+    text-align: center
+}
+
+.future_weather td:nth-of-type(1) {
+    border-right: 1px solid white;
+}
+
+.future_weather th:nth-of-type(1) {
+    border-right: 1px solid white;
+}
+
+.fa-sun {
+    color: yellow;
+}
+
+.fa-snowflake {
+    color: aliceblue;
+}
+
+.fa-cloud {
+    color: lightgray;
+}
+.fa-umbrella {
+    color: deepskyblue;
+}
+
+.fa-bolt {
+    color: yellow;
+}
+
+.button:active {
+    box-shadow: 0 0 4px 2px;
+}
 /*font-family: 'Gaegu', cursive;
 font-family: 'Amatic SC', cursive;
 font-family: 'Neucha', cursive;*/

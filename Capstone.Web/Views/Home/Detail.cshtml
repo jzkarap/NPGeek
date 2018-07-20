@@ -2,6 +2,8 @@
 
 @{
     ViewData["Title"] = "Detail";
+    DateTime date = new DateTime();
+    date = DateTime.Now;
 }
 
 <h2 class="header">Park Detail</h2>
@@ -14,75 +16,164 @@
             <p class="quote source">—@Model.QuoteSource</p>
         </div>
     </div>
-    
-    <div>
-        <h4>@Model.ParkName</h4>
-        <p>@Model.State</p>
-        <p>@Model.Description</p>
-    </div>
 
     <div>
-        <div>TODAY</div>
-        <div><img src="~/img/weather/@(ViewBag.Forecast[0].GetImageName())" /></div>
-        <div>@ViewBag.Forecast[0].Description</div>
-        <div>High <span class="temperature">@ViewBag.Forecast[0].HighTemp</span></div>
-        <div>Low  <span class="temperature">@ViewBag.Forecast[0].LowTemp</span></div>
-        <div>@ViewBag.Forecast[0].GetAdviceForWeather()</div>
-        <div>@ViewBag.Forecast[0].GetAdviceForTemp()</div>
+        <h4 class="detail_name">@Model.ParkName</h4>
+        <h5 class="detail_state">@Model.State</h5>
     </div>
 
-    <div>
-        @for (int i = 1; i < ViewBag.Forecast.Count; i++)
-        {
-        <div>
-            <div><img src="~/img/weather/@(ViewBag.Forecast[i].GetImageName())" /></div>
-            <div>@ViewBag.Forecast[i].Description</div>
-            <div>High <span class="temperature">@ViewBag.Forecast[i].HighTemp</span></div>
-            <div>Low  <span class="temperature">@ViewBag.Forecast[i].LowTemp</span></div>
+    <div class="description"><p class="detail_description">@Model.Description</p></div>
+
+    <div class="weather_wrapper">
+        <div class="current_weather">
+            <div><strong>CURRENT WEATHER:</strong></div>
+            <div class="current_weather_icon">
+                @if ((@ViewBag.Forecast[0].GetImageName()) == "cloudy.png")
+                {
+                    <i class="fas fa-cloud"></i>
+                }
+                @if ((@ViewBag.Forecast[0].GetImageName()) == "partlyCloudy.png")
+                {
+                    <i class="far fa-sun"></i> <i class="fas fa-cloud"></i>
+                }
+                @if ((@ViewBag.Forecast[0].GetImageName()) == "rain.png")
+                {
+                    <i class="fas fa-umbrella"></i>
+                }
+                @if ((@ViewBag.Forecast[0].GetImageName()) == "snow.png")
+                {
+                    <i class="far fa-snowflake"></i>
+                }
+                @if ((@ViewBag.Forecast[0].GetImageName()) == "sunny.png")
+                {
+                    <i class="far fa-sun"></i>
+                }
+                @if ((@ViewBag.Forecast[0].GetImageName()) == "thunderstorms.png")
+                {
+                    <i class="fas fa-bolt"></i>
+                }
+            </div>
+            <div class="weather_table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>condition:</th>
+                            <th>high:</th>
+                            <th>low:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@ViewBag.Forecast[0].Description</td>
+                            <td>@ViewBag.Forecast[0].HighTemp°</td>
+                            <td>@ViewBag.Forecast[0].LowTemp°</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="weather_advice">
+                <p class="advice_header"><strong>advice:</strong></p>
+                <p>@ViewBag.Forecast[0].GetAdviceForWeather()</p>
+                <p>@ViewBag.Forecast[0].GetAdviceForTemp()</p>
+            </div>
+
+
         </div>
-        }
+
+
+        <div class="future_weather">
+            @for (int i = 1; i < ViewBag.Forecast.Count; i++)
+            {
+                <div class="future_weather_block">
+                    <p><strong>@(date.AddDays(i).DayOfWeek)</strong></p>
+                    <div class="future_weather_icon">
+                        @if ((@ViewBag.Forecast[i].GetImageName()) == "cloudy.png")
+                        {
+                            <i class="fas fa-cloud"></i>
+                        }
+                        @if ((@ViewBag.Forecast[i].GetImageName()) == "partlyCloudy.png")
+                        {
+                            <i class="far fa-sun"></i><i class="fas fa-cloud"></i>
+                        }
+                        @if ((@ViewBag.Forecast[i].GetImageName()) == "rain.png")
+                        {
+                            <i class="fas fa-umbrella"></i>
+                        }
+                        @if ((@ViewBag.Forecast[i].GetImageName()) == "snow.png")
+                        {
+                            <i class="far fa-snowflake"></i>
+                        }
+                        @if ((@ViewBag.Forecast[i].GetImageName()) == "sunny.png")
+                        {
+                            <i class="far fa-sun"></i>
+                        }
+                        @if ((@ViewBag.Forecast[i].GetImageName()) == "thunderstorms.png")
+                        {
+                            <i class="fas fa-bolt"></i>
+                        }
+                    </div>
+                  
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>High:</th>
+                                <th>Low:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@ViewBag.Forecast[i].HighTemp°</td>
+                                <td>@ViewBag.Forecast[i].LowTemp°</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                   
+                </div>
+            }
+        </div>
     </div>
 
-    <table class="table table-striped">
-        <tr>
-            <td>Entry Fee</td>
-            <td>@Model.EntryFee.ToString("C")</td>
-        </tr>
-        <tr>
-            <td>Acreage</td>
-            <td>@Model.Acreage.ToString("N0")</td>
-        </tr>
-        <tr>
-            <td>Elevation</td>
-            <td>@Model.Elevation.ToString("N0")</td>
-        </tr>
-        <tr>
-            <td>Miles of Trail</td>
-            <td>@Model.MilesOfTrail miles</td>
-        </tr>
-        <tr>
-            <td># of Campsites</td>
-            <td>@Model.NumOfCampsites</td>
-        </tr>
-        <tr>
-            <td>Climate</td>
-            <td>@Model.Climate</td>
-        </tr>
-        <tr>
-            <td>Year Founded</td>
-            <td>@Model.YearFounded</td>
-        </tr>
-        <tr>
-            <td>Annual Visitors</td>
-            <td>@Model.AnnualVisitors.ToString("N0")</td>
-        </tr>
-        <tr>
-            <td>Animal Species</td>
-            <td>@Model.AnimalSpecies</td>
-        </tr>
-    </table>
-</div>
+        <table class="table table-striped">
+            <tr>
+                <td>Entry Fee</td>
+                <td>@Model.EntryFee.ToString("C")</td>
+            </tr>
+            <tr>
+                <td>Acreage</td>
+                <td>@Model.Acreage.ToString("N0")</td>
+            </tr>
+            <tr>
+                <td>Elevation</td>
+                <td>@Model.Elevation.ToString("N0")</td>
+            </tr>
+            <tr>
+                <td>Miles of Trail</td>
+                <td>@Model.MilesOfTrail miles</td>
+            </tr>
+            <tr>
+                <td># of Campsites</td>
+                <td>@Model.NumOfCampsites</td>
+            </tr>
+            <tr>
+                <td>Climate</td>
+                <td>@Model.Climate</td>
+            </tr>
+            <tr>
+                <td>Year Founded</td>
+                <td>@Model.YearFounded</td>
+            </tr>
+            <tr>
+                <td>Annual Visitors</td>
+                <td>@Model.AnnualVisitors.ToString("N0")</td>
+            </tr>
+            <tr>
+                <td>Animal Species</td>
+                <td>@Model.AnimalSpecies</td>
+            </tr>
+        </table>
+    </div>
 
-<button>HELLO. IT ME, BUTTON.</button>
+    <button>HELLO. IT ME, BUTTON.</button>
 
-<script src="~/js/site.js"></script>
+    <script src="~/js/site.js"></script>

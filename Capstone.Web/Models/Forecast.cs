@@ -65,6 +65,10 @@ namespace Capstone.Web.Models
 			{
 				advice = "Pack your raingear and wear waterproof shoes when visiting today.";
 			}
+			else
+			{
+				advice = "Enjoy your day.";
+			}
 
 			return advice;
 		}
