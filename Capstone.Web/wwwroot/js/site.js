@@ -2,9 +2,31 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-const button = document.querySelector(".temperature");
-const temp = document.querySelector(".temperature");
+var slideIndex = 1;
+showSlides(slideIndex);
 
-onclick.button = function convertTemp() {
-    temp.InnerText = (parseInt(temp.InnerText) - 32) / 1.8;
+// Next/previous controls
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length }
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
 }

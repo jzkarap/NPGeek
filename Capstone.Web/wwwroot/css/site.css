@@ -299,19 +299,21 @@ a:hover {
 
 .future_weather {
     color: white;
-    margin-top: 3%;
+
     margin-left: 4%;
+    margin-right: -6%;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    flex-grow: 1;
+    width: 50%;
 }
 
 .future_weather_block {
     text-align: center;
-    margin: 2%;
+    margin: 2% 2% 2% 2%;
     min-width: 210px;
     max-width: 210px;
-    border: 1px solid white;
 }
 
 .weather_table table {
@@ -392,6 +394,144 @@ a:hover {
 .button:active {
     box-shadow: 0 0 4px 2px;
 }
+
+#landing_content button {
+    outline: none !important;
+}
+
+#temp_switch {
+    margin-top: 4%;
+    color: black !important;
+    outline: none !important;
+}
+
+.future_weather_outline {
+    border: 1px solid white;
+}
+
+.detail_header {
+    font-family: Amatic SC;
+    color: white;
+    font-size: 3rem;
+    text-align: center;
+}
+
+/*brute force full width break*/
+.white_hr {
+    margin: auto -0% 2% auto;
+    width: 100% !important;
+    border: 0;
+    width: 1000px;
+    border-top: 1px solid #c9c7c7;
+}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin-top: 3%;
+    margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.8);
+    }
+
+mySlides {
+   
+}
+
+/* Caption text */
+.text {
+    color: white;
+    font-size: 15px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    align-content: center;
+}
+
+.slideshow_table {
+    margin-top: 3%;
+    text-align: center;
+    width: 100%;
+}
+
+.slideshow_table th {
+    text-align: center;
+}
+
+    .slideshow_table td {
+        border-top: 1px solid white;
+    }
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 12% 0% 4% 0%;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+    .active, .dot:hover {
+        background-color: #717171;
+    }
+
+/* Fading animation */
+.fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
 /*font-family: 'Gaegu', cursive;
 font-family: 'Amatic SC', cursive;
 font-family: 'Neucha', cursive;*/

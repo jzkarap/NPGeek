@@ -22,7 +22,10 @@
         <h5 class="detail_state">@Model.State</h5>
     </div>
 
-    <div class="description"><p class="detail_description">@Model.Description</p></div>
+    <div class="description">
+        <p class="detail_description">@Model.Description</p>
+        <p class="detail_description"><strong>Entry Fee: </strong>@Model.EntryFee.ToString("C")</p>
+    </div>
 
     <div class="weather_wrapper">
         <div class="current_weather">
@@ -77,6 +80,10 @@
                 <p>@ViewBag.Forecast[0].GetAdviceForTemp()</p>
             </div>
 
+            <button type="submit" id="temp_switch" class="btn" onclick="location.href='@Url.Action("#")'">
+                °F | °C
+            </button>
+
 
         </div>
 
@@ -86,94 +93,133 @@
             {
                 <div class="future_weather_block">
                     <p><strong>@(date.AddDays(i).DayOfWeek)</strong></p>
-                    <div class="future_weather_icon">
-                        @if ((@ViewBag.Forecast[i].GetImageName()) == "cloudy.png")
-                        {
-                            <i class="fas fa-cloud"></i>
-                        }
-                        @if ((@ViewBag.Forecast[i].GetImageName()) == "partlyCloudy.png")
-                        {
-                            <i class="far fa-sun"></i><i class="fas fa-cloud"></i>
-                        }
-                        @if ((@ViewBag.Forecast[i].GetImageName()) == "rain.png")
-                        {
-                            <i class="fas fa-umbrella"></i>
-                        }
-                        @if ((@ViewBag.Forecast[i].GetImageName()) == "snow.png")
-                        {
-                            <i class="far fa-snowflake"></i>
-                        }
-                        @if ((@ViewBag.Forecast[i].GetImageName()) == "sunny.png")
-                        {
-                            <i class="far fa-sun"></i>
-                        }
-                        @if ((@ViewBag.Forecast[i].GetImageName()) == "thunderstorms.png")
-                        {
-                            <i class="fas fa-bolt"></i>
-                        }
+                    <div class="future_weather_outline">
+                        <div class="future_weather_icon">
+                            @if ((@ViewBag.Forecast[i].GetImageName()) == "cloudy.png")
+                            {
+                                <i class="fas fa-cloud"></i>
+                            }
+                            @if ((@ViewBag.Forecast[i].GetImageName()) == "partlyCloudy.png")
+                            {
+                                <i class="far fa-sun"></i><i class="fas fa-cloud"></i>
+                            }
+                            @if ((@ViewBag.Forecast[i].GetImageName()) == "rain.png")
+                            {
+                                <i class="fas fa-umbrella"></i>
+                            }
+                            @if ((@ViewBag.Forecast[i].GetImageName()) == "snow.png")
+                            {
+                                <i class="far fa-snowflake"></i>
+                            }
+                            @if ((@ViewBag.Forecast[i].GetImageName()) == "sunny.png")
+                            {
+                                <i class="far fa-sun"></i>
+                            }
+                            @if ((@ViewBag.Forecast[i].GetImageName()) == "thunderstorms.png")
+                            {
+                                <i class="fas fa-bolt"></i>
+                            }
+                        </div>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>High:</th>
+                                    <th>Low:</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>@ViewBag.Forecast[i].HighTemp°</td>
+                                    <td>@ViewBag.Forecast[i].LowTemp°</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                  
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>High:</th>
-                                <th>Low:</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>@ViewBag.Forecast[i].HighTemp°</td>
-                                <td>@ViewBag.Forecast[i].LowTemp°</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                   
                 </div>
             }
         </div>
     </div>
+</div>
 
-        <table class="table table-striped">
-            <tr>
-                <td>Entry Fee</td>
-                <td>@Model.EntryFee.ToString("C")</td>
-            </tr>
-            <tr>
-                <td>Acreage</td>
-                <td>@Model.Acreage.ToString("N0")</td>
-            </tr>
-            <tr>
-                <td>Elevation</td>
-                <td>@Model.Elevation.ToString("N0")</td>
-            </tr>
-            <tr>
-                <td>Miles of Trail</td>
-                <td>@Model.MilesOfTrail miles</td>
-            </tr>
-            <tr>
-                <td># of Campsites</td>
-                <td>@Model.NumOfCampsites</td>
-            </tr>
-            <tr>
-                <td>Climate</td>
-                <td>@Model.Climate</td>
-            </tr>
-            <tr>
-                <td>Year Founded</td>
-                <td>@Model.YearFounded</td>
-            </tr>
-            <tr>
-                <td>Annual Visitors</td>
-                <td>@Model.AnnualVisitors.ToString("N0")</td>
-            </tr>
-            <tr>
-                <td>Animal Species</td>
-                <td>@Model.AnimalSpecies</td>
-            </tr>
-        </table>
+<hr class="white_hr" />
+
+<!-- Slideshow container -->
+<div class="slideshow-container">
+
+    <!-- Full-width images with number and caption text -->
+    <div class="mySlides fade">
+        <div class="text">
+            <h4 class="detail_header">Geography:</h4>
+            <table class="slideshow_table">
+                <thead>
+                    <tr>
+                        <th>acreage:</th>
+                        <th>elevation:</th>
+                        <th>climate:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.Acreage.ToString("N0")</td>
+                        <td>@Model.Elevation.ToString("N0")</td>
+                        <td>@Model.Climate</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <button>HELLO. IT ME, BUTTON.</button>
+    <div class="mySlides fade">
+        <div class="text">
+            <h4 class="detail_header">General:</h4>
+            <table class="slideshow_table">
+                <thead>
+                    <tr>
+                        <th>founded:</th>
+                        <th>annual visitors:</th>
+                        <th>campsites:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.YearFounded</td>
+                        <td>@Model.AnnualVisitors.ToString("N0")</td>
+                        <td>@Model.NumOfCampsites</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    <script src="~/js/site.js"></script>
+    <div class="mySlides fade">
+        <div class="text">
+            <h4 class="detail_header">Nature:</h4>
+            <table class="slideshow_table">
+                <thead>
+                    <tr>
+                        <th>trail:</th>
+                        <th>animal species:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.MilesOfTrail miles</td>
+                        <td>@Model.AnimalSpecies</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Next and previous buttons -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br />
+<!-- The dots/circles -->
+<div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+</div>
