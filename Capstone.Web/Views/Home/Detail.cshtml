@@ -4,6 +4,7 @@
     ViewData["Title"] = "Detail";
     DateTime date = new DateTime();
     date = DateTime.Now;
+    string wikiSource = Model.QuoteSource.Replace(' ', '_');
 }
 
 <h2 class="header">Park Detail</h2>
@@ -12,8 +13,10 @@
     <div class="image_quote">
         <img class=lg_park_image src="~/img/parks/@(Model.ParkCode).jpg" />
         <div class="middle">
-            <p class="quote">"@Model.Quote"</p>
-            <p class="quote source">—@Model.QuoteSource</p>
+            <a href="https://www.wikipedia.org/wiki/@wikiSource">
+                <p class="quote">"@Model.Quote"</p>
+                <p class="quote source">—@Model.QuoteSource</p>
+            </a>
         </div>
     </div>
 
@@ -24,7 +27,10 @@
 
     <div class="description">
         <p class="detail_description">@Model.Description</p>
+        @if(Model.EntryFee > 0)
+        {
         <p class="detail_description"><strong>Entry Fee: </strong>@Model.EntryFee.ToString("C")</p>
+        }
     </div>
 
     <div class="weather_wrapper">
@@ -150,20 +156,20 @@
     <!-- Full-width images with number and caption text -->
     <div class="mySlides fade">
         <div class="text">
-            <h4 class="detail_header">Geography:</h4>
+            <h4 class="detail_header">Geography</h4>
             <table class="slideshow_table">
                 <thead>
                     <tr>
-                        <th>acreage:</th>
+                        <th>area:</th>
                         <th>elevation:</th>
                         <th>climate:</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>@Model.Acreage.ToString("N0")</td>
-                        <td>@Model.Elevation.ToString("N0")</td>
-                        <td>@Model.Climate</td>
+                        <td>@Model.Acreage.ToString("N0") acres</td>
+                        <td>@Model.Elevation.ToString("N0") ft</td>
+                        <td>@Model.Climate.ToLower()</td>
                     </tr>
                 </tbody>
             </table>
@@ -172,7 +178,7 @@
 
     <div class="mySlides fade">
         <div class="text">
-            <h4 class="detail_header">General:</h4>
+            <h4 class="detail_header">General</h4>
             <table class="slideshow_table">
                 <thead>
                     <tr>
@@ -194,17 +200,19 @@
 
     <div class="mySlides fade">
         <div class="text">
-            <h4 class="detail_header">Nature:</h4>
+            <h4 class="detail_header">Nature</h4>
             <table class="slideshow_table">
                 <thead>
                     <tr>
                         <th>trail:</th>
+                        <th> </th>
                         <th>animal species:</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>@Model.MilesOfTrail miles</td>
+                        <td> </td>
                         <td>@Model.AnimalSpecies</td>
                     </tr>
                 </tbody>
