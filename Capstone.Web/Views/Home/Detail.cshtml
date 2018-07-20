@@ -8,12 +8,16 @@
 }
 
 <script>
+
     function bakeCookie() {
         if (readCookie("units") == null) {
             createCookie("units", "F");
         }
+        getPreference();
     }
+
     window.onload = bakeCookie;
+
 </script>
 
 <h2 class="header">Park Detail</h2>
@@ -95,7 +99,7 @@
                 <p>@ViewBag.Forecast[0].GetAdviceForTemp()</p>
             </div>
 
-            <button type="submit" id="temp_switch" class="btn" onclick="$(convert())">
+            <button type="submit" id="temp_switch" class="btn" onclick="$(setPreference())">
                 <strong>°F</strong> | °C
             </button>
 
