@@ -76,7 +76,9 @@ function getPreference() {
         var elements = document.getElementsByClassName("temp");
 
         for (var i = 0; i < elements.length; i++) {
+
             var tempstring = elements[i].innerHTML;
+            tempstring = tempstring.substring(0, tempstring.length - 2);
             var temperature = (parseInt(tempstring) - 32) * (5 / 9);
             elements[i].innerHTML = Math.round(temperature) + 'ºC';
         }
@@ -100,32 +102,30 @@ function setPreference() {
         eraseCookie("units");
         createCookie("units", "C");
 
-        //document.getElementById("temp_switch").innerHTML = "<strong>°F</strong> | °C";
-        //var elements = document.getElementsByClassName("temp");
+        document.getElementById("temp_switch").innerHTML = "°F | <strong>°C</strong>" ;
+        var elements = document.getElementsByClassName("temp");
 
-        //for (var i = 0; i < elements.length; i++) {
-        //    var tempstring = elements[i].innerHTML;
-        //    tempstring = tempstring.substring(0, tempstring.length - 2);
-        //    var temperature = (parseInt(tempstring) - 32) * (5 / 9);
-        //    elements[i].innerHTML = Math.round(temperature) + 'ºC';
-        //}
+        for (var i = 0; i < elements.length; i++) {
+            var tempstring = elements[i].innerHTML;
+            tempstring = tempstring.substring(0, tempstring.length - 2);
+            var temperature = (parseInt(tempstring) - 32) * (5 / 9);
+            elements[i].innerHTML = Math.round(temperature) + 'ºC';
+        }
         
     }
     if (preference == "C") {
         eraseCookie("units");
         createCookie("units", "F");
 
-        //document.getElementById("temp_switch").innerHTML = "°F | <strong>°C</strong>";
-        //var elements = document.getElementsByClassName("temp");
+        document.getElementById("temp_switch").innerHTML = "<strong>°F</strong > | °C";
+        var elements = document.getElementsByClassName("temp");
 
-        //for (var i = 0; i < elements.length; i++) {
-        //    var tempstring = elements[i].innerHTML;
-        //    tempstring = tempstring.substring(0, tempstring.length - 2);
-        //    var temperature = parseInt(tempstring) * (9 / 5) + 32;
-        //    elements[i].innerHTML = Math.round(temperature) + 'ºF';
-        //}
+        for (var i = 0; i < elements.length; i++) {
+            var tempstring = elements[i].innerHTML;
+            tempstring = tempstring.substring(0, tempstring.length - 2);
+            var temperature = parseInt(tempstring) * (9 / 5) + 32;
+            elements[i].innerHTML = Math.round(temperature) + 'ºF';
+        }
     } 
-
-    getPreference();
 }
 

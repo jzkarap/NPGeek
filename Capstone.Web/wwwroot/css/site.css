@@ -315,7 +315,6 @@ a:hover {
 
 .future_weather {
     color: white;
-
     margin-left: 4%;
     margin-right: -6%;
     display: flex;
@@ -336,6 +335,10 @@ a:hover {
     margin-top: 3%;
     width: 100%;
     text-align: center;
+}
+
+.weather_table * {
+    width: 30%;
 }
 
 .weather_table th {
