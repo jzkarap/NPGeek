@@ -7,13 +7,22 @@
     string wikiSource = Model.QuoteSource.Replace(' ', '_');
 }
 
+<script>
+    function bakeCookie() {
+        if (readCookie("units") == null) {
+            createCookie("units", "F");
+        }
+    }
+    window.onload = bakeCookie;
+</script>
+
 <h2 class="header">Park Detail</h2>
 
 <div>
     <div class="image_quote">
         <img class=lg_park_image src="~/img/parks/@(Model.ParkCode).jpg" />
         <div class="middle">
-            <a href="https://www.wikipedia.org/wiki/@wikiSource">
+            <a href="https://www.wikipedia.org/wiki/@wikiSource" target="_blank">
                 <p class="quote">"@Model.Quote"</p>
                 <p class="quote source">—@Model.QuoteSource</p>
             </a>
@@ -27,9 +36,9 @@
 
     <div class="description">
         <p class="detail_description">@Model.Description</p>
-        @if(Model.EntryFee > 0)
+        @if (Model.EntryFee > 0)
         {
-        <p class="detail_description"><strong>Entry Fee: </strong>@Model.EntryFee.ToString("C")</p>
+            <p class="detail_description"><strong>Entry Fee: </strong>@Model.EntryFee.ToString("C")</p>
         }
     </div>
 
@@ -74,8 +83,8 @@
                     <tbody>
                         <tr>
                             <td>@ViewBag.Forecast[0].Description</td>
-                            <td>@ViewBag.Forecast[0].HighTemp°</td>
-                            <td>@ViewBag.Forecast[0].LowTemp°</td>
+                            <td class="temp">@ViewBag.Forecast[0].HighTemp°F</td>
+                            <td class="temp">@ViewBag.Forecast[0].LowTemp°F</td>
                         </tr>
                     </tbody>
                 </table>
@@ -86,13 +95,13 @@
                 <p>@ViewBag.Forecast[0].GetAdviceForTemp()</p>
             </div>
 
-            <button type="submit" id="temp_switch" class="btn" onclick="location.href='@Url.Action("#")'">
-                °F | °C
+            <button type="submit" id="temp_switch" class="btn" onclick="$(convert())">
+                <strong>°F</strong> | °C
             </button>
 
 
-        </div>
 
+        </div>
 
         <div class="future_weather">
             @for (int i = 1; i < ViewBag.Forecast.Count; i++)
@@ -136,8 +145,8 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>@ViewBag.Forecast[i].HighTemp°</td>
-                                    <td>@ViewBag.Forecast[i].LowTemp°</td>
+                                    <td class="temp">@ViewBag.Forecast[i].HighTemp°F</td>
+                                    <td class="temp">@ViewBag.Forecast[i].LowTemp°F</td>
                                 </tr>
                             </tbody>
                         </table>

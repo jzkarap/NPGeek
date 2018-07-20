@@ -5,6 +5,10 @@ body {
     background-color: black;
 }
 
+body a {
+    text-decoration: none;
+}
+
 .landing_page {
     background-image: url(/img/canyon.jpg);
     height: 1000px;
@@ -413,8 +417,11 @@ a:hover {
 
 #temp_switch {
     margin-top: 4%;
-    color: black !important;
+    color: white !important;
+    text-align: left;
     outline: none !important;
+    border: 1px solid white;
+    background-color: transparent !important;
 }
 
 .future_weather_outline {
@@ -442,6 +449,7 @@ a:hover {
     max-width: 1000px;
     position: relative;
     margin-top: 3%;
+    color: white;
     margin: auto;
 }
 
@@ -451,7 +459,8 @@ a:hover {
     position: absolute;
     top: 50%;
     width: auto;
-    margin-top: -22px;
+    margin: -4px;
+    margin-top: 4px;
     padding: 16px;
     color: white;
     font-weight: bold;
