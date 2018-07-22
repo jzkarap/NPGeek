@@ -3,26 +3,33 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Park Rankings</h2>
+<h2 class="header">Park Rankings</h2>
 
-@if(TempData["Submitted"] != null)
+<h4 class="detail_state">The following are the top rated parks:</h4>
+
+@if (TempData["Submitted"] != null)
 {
-    <p>YOUR VOTE IS CAST. MAY GOD HAVE MERCY ON YOUR SOUL.</p>
+    <p class="temp-message">YOUR VOTE IS CAST. MAY GOD HAVE MERCY ON YOUR SOUL.</p>
 }
 
-<table>
-    @foreach (var result in Model)
+<table class="table table-responsive">
+    @for (int i = 0; i < Model.Count; i++)
     {
-        <thead>
-            <tr>
-                <th>@result.ParkName</th>
-            </tr>
-        </thead>
         <tbody>
             <tr>
+                <td><img src="~/img/parks/@(Model[i].ParkCode).jpg" class="park_img" /></td>
                 <td>
-                    @result.SurveyTally
+                    @if (i == 0)
+                    {
+                        <i class="fas fa-trophy"></i>
+                    }
+                    else if (i == 1)
+                    {
+                        <i class="fas fa-award"></i>
+                    }
                 </td>
+                <td class="detail_header">@Model[i].ParkName</td>
+                <td class="results_tally">@Model[i].SurveyTally</td>
             </tr>
         </tbody>
     }

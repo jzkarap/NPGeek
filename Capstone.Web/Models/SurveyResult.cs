@@ -7,6 +7,7 @@ namespace Capstone.Web.Models
 {
     public class SurveyResult
     {
+		public string ParkCode { get; set; }
 		public string ParkName { get; set; }
 		public int SurveyTally { get; set; }
     }

@@ -1,32 +1,50 @@
-﻿@model  Survey
+﻿@model Survey
 @{
     ViewData["Title"] = "TakeSurvey";
 }
 
-<h2>Vote for your favorite park</h2>
+<h2 class="header">Vote for your favorite park</h2>
 
-<form asp-controller="survey" asp-action="takesurvey" method="post">
-    <div>
-        <label asp-for="ParkCode">What's your favorite park?</label>
-        <select asp-for="ParkCode" asp-items="@ViewBag.Parks"></select>
-        <span asp-validation-for="ParkCode"></span>
-    </div>
-    <div>
-        <label asp-for="Email">Enter your email address: </label>
-        <input type="email" asp-for="Email" />
-        <span asp-validation-for="Email"></span>
-    </div>
-    <div>
-        <label asp-for="State">Enter your state: </label>
-        <input asp-for="State" />
-        <span asp-validation-for="State"></span>
-    </div>
-    <div>
-        <label asp-for="ActivityLevel">Select your activity level: </label>
-        <select asp-for="ActivityLevel" asp-items="Survey.ActivityLevelOptions"></select>
-        <span asp-validation-for="ActivityLevel"></span>
-    </div>
-    <div>
-        <input type="submit" value="Cast your vote" />
-    </div>
-</form>
+<div class="survey">
+    <form asp-controller="survey" asp-action="takesurvey" method="post">
+        <div class="label_wrapper">
+            <div>
+                <label asp-for="ParkCode">What's your favorite park?</label>
+            </div>
+            <div>
+                <select asp-for="ParkCode" asp-items="@ViewBag.Parks"></select>
+                <span asp-validation-for="ParkCode"></span>
+            </div>
+        </div>
+        <div class="label_wrapper">
+            <div>
+                <label asp-for="Email">Enter your email address: </label>
+            </div>
+            <div>
+                <input type="email" asp-for="Email" />
+                <span asp-validation-for="Email"></span>
+            </div>
+        </div>
+        <div class="label_wrapper">
+            <div>
+                <label asp-for="State">Enter your state: </label>
+            </div>
+            <div>
+                <input asp-for="State" />
+                <span asp-validation-for="State"></span>
+            </div>
+        </div>
+        <div class="label_wrapper">
+            <div>
+                <label asp-for="ActivityLevel">Select your activity level: </label>
+            </div>
+            <div>
+                <select asp-for="ActivityLevel" asp-items="Survey.ActivityLevelOptions"></select>
+                <span asp-validation-for="ActivityLevel"></span>
+            </div>
+        </div>
+        <div class="survey_btn">
+            <input type="submit" value="Cast your vote" />
+        </div>
+    </form>
+</div>

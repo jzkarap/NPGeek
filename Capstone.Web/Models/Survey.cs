@@ -11,10 +11,13 @@ namespace Capstone.Web.Models
 	{
 		[Required]
 		public string ParkCode { get; set; }
+
 		[Required]
 		public string Email { get; set; }
+
 		[Required]
 		public string State { get; set; }
+
 		[Required]
 		public string ActivityLevel { get; set; }
 

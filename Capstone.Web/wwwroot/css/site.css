@@ -551,6 +551,11 @@ mySlides {
     }
 }
 
+.temp-message {
+    font-size: 1.2rem;
+    font-family: Raleway;
+    color: white;
+}
 
 .break {
     color: transparent;
@@ -558,6 +563,64 @@ mySlides {
     outline-color: transparent;
     width: 15px;
     opacity: 0;
+}
+
+.results_tally {
+    font-family: Neucha;
+    font-size: 3.1rem;
+    color: white;
+    text-align: center;
+}
+
+.park_img {
+    box-shadow: 0 0 6px 6px rgba(255,255,255,0.3);
+    width: 75%;
+    border-radius: 3px;
+    padding: 1.5px;
+    color: white;
+    margin: 5px;
+}
+
+.fa-trophy{
+    color: gold;
+    font-size: 4rem;
+}
+
+.fa-award {
+    color: royalblue;
+    font-size: 4rem;
+}
+
+.survey {
+    display: grid;
+    grid-row-gap: 1em;
+    justify-content: center;
+    font-family: Raleway;
+    color: white;
+    font-size: 1em;
+}
+
+.survey input {
+    color: black;
+}
+
+.survey select {
+    color: black;
+}
+
+.label_wrapper {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-content: flex-start;
+}
+
+.survey div {
+    margin: 7px;
+}
+
+.survey_btn {
+    display: grid;
+    align-items: center;
 }
 /*font-family: 'Gaegu', cursive;
 font-family: 'Amatic SC', cursive;

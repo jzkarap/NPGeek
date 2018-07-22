@@ -60,10 +60,10 @@ namespace Capstone.Web.DAL
 					// Open the connection
 					conn.Open();
 
-					string sql = $@"SELECT park.parkName, COUNT(survey_result.parkCode) AS Tally
+					string sql = $@"SELECT park.parkCode, park.parkName, COUNT(survey_result.parkCode) AS Tally
 						FROM survey_result
 						INNER JOIN park ON survey_result.parkCode = park.parkCode
-						GROUP BY park.parkName
+						GROUP BY park.parkCode, park.parkName
 						ORDER BY COUNT(survey_result.parkCode) DESC, park.parkName ASC;";
 					SqlCommand cmd = new SqlCommand(sql, conn);
 
@@ -73,6 +73,7 @@ namespace Capstone.Web.DAL
 					while (reader.Read())
 					{
 						SurveyResult result = new SurveyResult();
+						result.ParkCode = Convert.ToString(reader["parkCode"]);
 						result.ParkName = Convert.ToString(reader["parkName"]);
 						result.SurveyTally = Convert.ToInt32(reader["Tally"]);
 
