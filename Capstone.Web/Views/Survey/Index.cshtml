@@ -1,36 +1,76 @@
 ﻿@model IList<SurveyResult>
 @{
     ViewData["Title"] = "Index";
+    int winningTally = Model[0].SurveyTally;
+    int secondPlaceTally = 0;
+    bool secondPlace = true;
 }
 
 <h2 class="header">Park Rankings</h2>
 
-<h4 class="detail_state">The following are the top rated parks:</h4>
-
 @if (TempData["Submitted"] != null)
 {
-    <p class="temp-message">YOUR VOTE IS CAST. MAY GOD HAVE MERCY ON YOUR SOUL.</p>
+    <p class="temp-message">Vote submitted!!.</p>
 }
 
-<table class="table table-responsive">
-    @for (int i = 0; i < Model.Count; i++)
-    {
-        <tbody>
-            <tr>
-                <td><img src="~/img/parks/@(Model[i].ParkCode).jpg" class="park_img" /></td>
-                <td>
-                    @if (i == 0)
+@if (@Model.Count == 0)
+{
+    <h4 class="detail_header">Looks like there aren't any results yet. Please vote, and check back later.</h4>
+}
+else
+{
+    <div class="survey_results">
+        <table class="table table-responsive" id="survey_table">
+
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                if (secondPlace == true)
+                {
+                    if (i >= 1 && Model[i].SurveyTally != winningTally)
                     {
-                        <i class="fas fa-trophy"></i>
+                        secondPlaceTally = Model[i].SurveyTally;
+                        secondPlace = false;
                     }
-                    else if (i == 1)
-                    {
-                        <i class="fas fa-award"></i>
-                    }
-                </td>
-                <td class="detail_header">@Model[i].ParkName</td>
-                <td class="results_tally">@Model[i].SurveyTally</td>
-            </tr>
-        </tbody>
-    }
-</table>
+                }
+
+                <tbody>
+                    <tr id="results_text">
+                        <td>
+                            <a asp-controller="home" asp-action="detail" asp-route-id="@Model[i].ParkCode">
+                                <img src="~/img/parks/@(Model[i].ParkCode).jpg" class="park_img" />
+                            </a>
+                        </td>
+                        <td>
+                            @if (i == 0)
+                            {
+                                <i class="fas fa-trophy"></i>
+                            }
+                            else if (i >= 1 && Model[i].SurveyTally == winningTally)
+                            {
+                                <i class="fas fa-trophy"></i>
+                            }
+                            else if (i == 1)
+                            {
+                                <i class="fas fa-award"></i>
+                            }
+                            else if (Model[i].SurveyTally == secondPlaceTally)
+                            {
+                                <i class="fas fa-award"></i>
+                            }
+                        </td>
+                        <td class="detail_header"> <a asp-controller="home" asp-action="detail" asp-route-id="@Model[i].ParkCode">@Model[i].ParkName</a></td>
+                        @if (Model[i].SurveyTally > 1)
+                        {
+                            <td class="results_tally">@Model[i].SurveyTally votes</td>
+                        }
+                        else
+                        {
+                            <td class="results_tally">@Model[i].SurveyTally vote</td>
+                        }
+                    </tr>
+                </tbody>
+            }
+
+        </table>
+    </div>
+}

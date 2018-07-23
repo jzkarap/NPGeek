@@ -5,9 +5,9 @@ body {
     background-color: black;
 }
 
-body a {
-    text-decoration: none;
-}
+    body a {
+        text-decoration: none;
+    }
 
 .landing_page {
     background-image: url(/img/canyon.jpg);
@@ -51,24 +51,40 @@ body a {
 
 .park_box {
     box-shadow: 0 0 6px 6px rgba(255,255,255,0.3);
+    opacity: .9;
     font-size: .9rem;
-    border-radius: 2px;
+    border-radius: 20px;
     padding: 2px;
     color: white;
     z-index: 1;
     display: block;
+    transition: box-shadow .6s, opacity .4s;
 }
 
     .park_box:hover {
         box-shadow: 0 0 40px 10px rgba(255,255,255,0.4);
+        opacity: 1;
     }
+
+.page_grid:hover .park_box:not(:hover) {
+    opacity: .4;
+    box-shadow: 0 0 3px 3px rgba(255,255,255,0.3);
+}
 
 .park_box img {
     padding: 10px 10px 0px 10px;
+    border: 2px solid transparent;
+    border-radius: 40px;
+    transition: padding .4s, border .4s, border-radius .6s, padding .4s;
 }
 
 .park_box:hover img {
-    padding: 0;
+    padding: 1px;
+    border: 0px solid transparent;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
 }
 
 /*.park_box:hover {
@@ -104,9 +120,9 @@ img {
     border-bottom: 1px solid white;
 }
 
-.park_name:hover {
-    color: yellow;
-}
+    .park_name:hover {
+        color: yellow;
+    }
 
 .park_info {
     margin: 1% 4%;
@@ -122,10 +138,10 @@ a {
     color: white;
 }
 
-a:hover {
-    color: yellow;
-    text-decoration: none;
-}
+    a:hover {
+        color: yellow;
+        text-decoration: none;
+    }
 
 .park_description {
     margin-top: 2%;
@@ -141,24 +157,24 @@ a:hover {
     font-size: 2em;
 }
 
-.navbar li {
+    .navbar li {
         margin-right: 6%;
         border-left: 1px solid black;
         width: 20%;
-}
-
-    .navbar li:hover {
-        text-shadow: 1px 1px 3px rgba(0,0,0,.6);
     }
+
+        .navbar li:hover {
+            text-shadow: 1px 1px 3px rgba(0,0,0,.6);
+        }
 
 .navbar-brand {
     font-size: 1.8em;
 }
 
 
-.navbar-brand:hover {
+    .navbar-brand:hover {
         text-shadow: 2px 2px 3px rgba(0,0,0,.6);
-}
+    }
 
 .image_quote {
     position: relative;
@@ -255,14 +271,13 @@ a:hover {
 }
 
 .description {
-   padding-left: 10%;
-   padding-right: 10%;
-   padding-top: 4%;
-   padding-bottom: 4%;
-   background-color: white;
-   border: 5px solid white;
-   border-radius: 10px;
-
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    background-color: white;
+    border: 5px solid white;
+    border-radius: 10px;
 }
 
 .detail_description {
@@ -310,7 +325,7 @@ a:hover {
     }
 
 .future_weather_icon {
-     font-size: 8rem;
+    font-size: 8rem;
 }
 
 .future_weather {
@@ -346,10 +361,10 @@ a:hover {
     text-align: center;
 }
 
-.weather_table th:nth-of-type(2) {
-    border-left: 1px solid white;
-    border-right: 1px solid white;
-}
+    .weather_table th:nth-of-type(2) {
+        border-left: 1px solid white;
+        border-right: 1px solid white;
+    }
 
 .weather_table td:nth-of-type(2) {
     border-left: 1px solid white;
@@ -402,6 +417,7 @@ a:hover {
 .fa-cloud {
     color: lightgray;
 }
+
 .fa-umbrella {
     color: deepskyblue;
 }
@@ -478,7 +494,6 @@ a:hover {
 }
 
 mySlides {
-   
 }
 
 /* Caption text */
@@ -497,9 +512,9 @@ mySlides {
     width: 100%;
 }
 
-.slideshow_table th {
-    text-align: center;
-}
+    .slideshow_table th {
+        text-align: center;
+    }
 
     .slideshow_table td {
         border-top: 1px solid white;
@@ -552,9 +567,16 @@ mySlides {
 }
 
 .temp-message {
-    font-size: 1.2rem;
-    font-family: Raleway;
-    color: white;
+    font-size: 2.4rem;
+    font-weight: 800;
+    font-family: Amatic SC;
+    color: black;
+    background-color: white;
+    margin-bottom: 3%;
+    border-radius: 30px;
+    text-align: center;
+    height: 6rem;
+    line-height: 6rem;
 }
 
 .break {
@@ -566,29 +588,86 @@ mySlides {
 }
 
 .results_tally {
+    width: 30%;
     font-family: Neucha;
     font-size: 3.1rem;
     color: white;
-    text-align: center;
+    text-align: left;
 }
 
 .park_img {
-    box-shadow: 0 0 6px 6px rgba(255,255,255,0.3);
-    width: 75%;
-    border-radius: 3px;
-    padding: 1.5px;
+    box-shadow: 0 0 3px 3px rgba(255,255,255,0.3);
+    width: 80%;
+    border: 12px solid black;
+    border-radius: 30px;
+    padding: 3px;
     color: white;
-    margin: 5px;
+    margin: 2% 0 2% 5%;
+    transition: border .8s, padding .8s, margin .8s, transform .8s, box-shadow .8s;
 }
 
-.fa-trophy{
+    .park_img:hover {
+        box-shadow: 0 0 12px 8px rgba(255,255,255,0.3);
+        padding: 1px;
+        border: 1px solid black;
+        transform: scale(1.02);
+        margin: 3% 0 3% 5%;
+    }
+
+.fa-trophy {
     color: gold;
-    font-size: 4rem;
+    font-size: 8rem;
+    text-align: left;
+    padding-left: 4%;
+    transition: transform .6s, text-shadow .8s;
+    margin-top: 3%;
+}
+
+    .fa-trophy:hover {
+        text-shadow: 5px 5px 8px rgba(255,255,255,0.3), -5px -5px 8px rgba(255,255,255,0.3);
+        animation: roll 3s infinite;
+    }
+
+@keyframes roll {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .fa-award {
     color: royalblue;
-    font-size: 4rem;
+    font-size: 8rem;
+    text-align: left;
+    padding-left: 4%;
+    transition: transform .6s, text-shadow .8s;
+    margin-top: 3%;
+}
+
+.fa-award:hover {
+    text-shadow: 2px 2px 6px rgba(255,255,255,0.3), -2px -2px 6px rgba(255,255,255,0.3);
+    animation: shake 1s infinite;
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(0);
+    }
+
+    30% {
+        transform: rotate(20deg);
+    }
+
+    60% {
+        transform: rotate(-20deg);
+    }
+
+    90% {
+        transform: rotate(0);
+    }
 }
 
 .survey {
@@ -600,13 +679,13 @@ mySlides {
     font-size: 1em;
 }
 
-.survey input {
-    color: black;
-}
+    .survey input {
+        color: black;
+    }
 
-.survey select {
-    color: black;
-}
+    .survey select {
+        color: black;
+    }
 
 .label_wrapper {
     display: grid;
@@ -621,6 +700,37 @@ mySlides {
 .survey_btn {
     display: grid;
     align-items: center;
+}
+
+survey_results {
+    color: white;
+    border: 1px solid white;
+}
+
+#survey_table {
+    width: 100%;
+}
+
+#results_text {
+    line-height: 300px;
+}
+
+.fa-tree {
+    color: forestgreen;
+}
+
+.return {
+    font-family: Amatic SC;
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0 47%;
+    padding: 1%;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+.error_page {
+    margin-bottom: 3%;
 }
 /*font-family: 'Gaegu', cursive;
 font-family: 'Amatic SC', cursive;
